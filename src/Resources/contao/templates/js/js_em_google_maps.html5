@@ -6,4 +6,3 @@
     /** Vendor sources */
     $GLOBALS['TL_JAVASCRIPT'][] = 'bundles/estatemanagergooglemaps/google-libraries/markerclusterer.1.2.0.js|static';
     $GLOBALS['TL_JAVASCRIPT'][] = 'bundles/estatemanagergooglemaps/google-libraries/oms.min.js|static';
-?>
