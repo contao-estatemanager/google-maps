@@ -1,0 +1,58 @@
+{
+  "name":"contao-estatemanager/google-maps",
+  "type":"contao-bundle",
+  "description":"Google Maps Extension for Contao EstateManager",
+  "keywords":["contao","estatemanager","real estate","estate","property","googlemaps","map"],
+  "homepage":"https://www.contao-estatemanager.com/",
+  "license":"proprietary",
+  "authors":[
+    {
+      "name":"Oveleon",
+      "homepage":"https://www.oveleon.de/",
+      "role":"Developer"
+    },
+    {
+      "name":"Daniele Sciannimanica",
+      "homepage":"https://github.com/doishub",
+      "role":"Developer"
+    },
+    {
+      "name":"Fabian Ekert",
+      "homepage":"https://github.com/eki89",
+      "role":"Developer"
+    }
+  ],
+  "require":{
+    "php":">=7.1",
+    "contao/core-bundle":"^4.4",
+    "contao-estatemanager/core": "^1.0.3",
+    "contao-estatemanager/google-services": "^1.0"
+  },
+  "require-dev": {
+    "contao/manager-plugin": "^2.0"
+  },
+  "conflict": {
+    "contao/core": "*",
+    "contao/manager-plugin": "<2.0 || >=3.0"
+  },
+  "autoload":{
+    "psr-4": {
+      "ContaoEstateManager\\GoogleMaps\\": "src/"
+    },
+    "classmap": [
+      "src/Resources/contao/"
+    ],
+    "exclude-from-classmap": [
+      "src/Resources/contao/config/",
+      "src/Resources/contao/dca/",
+      "src/Resources/contao/languages/",
+      "src/Resources/contao/templates/"
+    ]
+  },
+  "extra":{
+    "branch-alias": {
+      "dev-main": "1.0.x-dev"
+    },
+    "contao-manager-plugin": "ContaoEstateManager\\GoogleMaps\\ContaoManager\\Plugin"
+  }
+}
