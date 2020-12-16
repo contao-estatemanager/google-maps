@@ -3,8 +3,8 @@
   <file datatype="php" original="src/Resources/contao/languages/en/tl_estate_manager_addon.php" source-language="en" target-language="de">
     <body>
       <trans-unit id="tl_estate_manager_addon.addon_google_maps_license.0">
-        <source>Addon Google-Maps License</source>
-        <target>Addon Google-Maps Lizenz</target>
+        <source>Addon Google Maps License</source>
+        <target>Addon Google Maps Lizenz</target>
       </trans-unit>
       <trans-unit id="tl_estate_manager_addon.addon_google_maps_license.1">
         <source>Please enter your license key</source>
