@@ -1,11 +1,14 @@
 <?php
-/**
+
+declare(strict_types=1);
+
+/*
  * This file is part of Contao EstateManager.
  *
- * @link      https://www.contao-estatemanager.com/
- * @source    https://github.com/contao-estatemanager/googlemaps
- * @copyright Copyright (c) 2019  Oveleon GbR (https://www.oveleon.de)
- * @license   https://www.contao-estatemanager.com/lizenzbedingungen.html
+ * @see        https://www.contao-estatemanager.com/
+ * @source     https://github.com/contao-estatemanager/google-maps
+ * @copyright  Copyright (c) 2021 Oveleon GbR (https://www.oveleon.de)
+ * @license    https://www.contao-estatemanager.com/lizenzbedingungen.html
  */
 
 namespace ContaoEstateManager\GoogleMaps;
@@ -22,26 +25,27 @@ use Patchwork\Utf8;
 class ModuleRealEstateGoogleMap extends ModuleRealEstate
 {
     /**
-     * Template
+     * Template.
+     *
      * @var string
      */
     protected $strTemplate = 'mod_realEstateGoogleMap';
 
     /**
-     * Generate wildcard for backend
+     * Generate wildcard for backend.
      *
      * @return string
      */
     public function generate()
     {
-        if (TL_MODE == 'BE')
+        if (TL_MODE === 'BE')
         {
             $objTemplate = new BackendTemplate('be_wildcard');
-            $objTemplate->wildcard = '### ' . Utf8::strtoupper($GLOBALS['TL_LANG']['FMD']['realEstateGoogleMap'][0]) . ' ###';
+            $objTemplate->wildcard = '### '.Utf8::strtoupper($GLOBALS['TL_LANG']['FMD']['realEstateGoogleMap'][0]).' ###';
             $objTemplate->title = $this->headline;
             $objTemplate->id = $this->id;
             $objTemplate->link = $this->name;
-            $objTemplate->href = 'contao/main.php?do=themes&amp;table=tl_module&amp;act=edit&amp;id=' . $this->id;
+            $objTemplate->href = 'contao/main.php?do=themes&amp;table=tl_module&amp;act=edit&amp;id='.$this->id;
 
             return $objTemplate->parse();
         }
@@ -50,31 +54,32 @@ class ModuleRealEstateGoogleMap extends ModuleRealEstate
     }
 
     /**
-     * Generate the module
+     * Generate the module.
      */
-    protected function compile()
+    protected function compile(): void
     {
         /** @var \PageModel $objPage */
         global $objPage;
 
         $markerImagePath = '';
-        $markerSize = [0,0];
+        $markerSize = [0, 0];
 
         // get marker image path
-        if($arrMarker = GoogleMaps::getMarkerImage()){
+        if ($arrMarker = GoogleMaps::getMarkerImage())
+        {
             $markerImagePath = $arrMarker[0];
             $markerSize = [
                 $arrMarker[1][0],
-                $arrMarker[1][1]
+                $arrMarker[1][1],
             ];
         }
 
         // get cluster styles
-        $clustering = !!$this->googleUseCluster;
+        $clustering = (bool) $this->googleUseCluster;
         $clusterSteps = null;
         $clusterStyles = null;
 
-        if($clustering && $arrStyles = GoogleMaps::getClusterStyles())
+        if ($clustering && $arrStyles = GoogleMaps::getClusterStyles())
         {
             $clusterSteps = $arrStyles[0];
             $clusterStyles = $arrStyles[1];
@@ -85,70 +90,70 @@ class ModuleRealEstateGoogleMap extends ModuleRealEstate
         }
 
         // create map id
-        $mapId = 'map' . $this->id;
+        $mapId = 'map'.$this->id;
 
         // create map configuration
         $mapConfig = [
             'initInstant' => true,
             'source' => [
-                'path'         => '/api/estatemanager/v1/estates',
-                'param'        => [
-                    'dataType'     => 'geojson',
-                    'filter'       => true,
-                    'filterMode'   => $this->filterMode,
-                    'groups'       => $this->realEstateGroups,
-                    'pageId'       => $objPage->id,
-                    'moduleId'     => $this->id
-                ]
+                'path' => '/api/estatemanager/v1/estates',
+                'param' => [
+                    'dataType' => 'geojson',
+                    'filter' => true,
+                    'filterMode' => $this->filterMode,
+                    'groups' => $this->realEstateGroups,
+                    'pageId' => $objPage->id,
+                    'moduleId' => $this->id,
+                ],
             ],
             'popup' => [
                 'source' => [
-                    'path'    => '/api/estatemanager/v1/estates/%id%',
-                    'param'   => [
+                    'path' => '/api/estatemanager/v1/estates/%id%',
+                    'param' => [
                         'template' => $this->googleMapPopupTemplate ?: '',
-                        'moduleId' => $this->id
-                    ]
-                ]
+                        'moduleId' => $this->id,
+                    ],
+                ],
             ],
             'spider' => [
-                'spiderfier'   => !!$this->googleUseSpiderfier,
-                'options'      => [
-                    'keepSpiderfied'  => true,
+                'spiderfier' => (bool) $this->googleUseSpiderfier,
+                'options' => [
+                    'keepSpiderfied' => true,
                     'markersWontMove' => true,
-                    'markersWontHide' => true
-                ]
+                    'markersWontHide' => true,
+                ],
             ],
             'cluster' => [
-                'clustering'   => $clustering,
+                'clustering' => $clustering,
                 'clusterSteps' => $clusterSteps,
-                'styles'       => $clusterStyles,
-                'options'      => [
-                    'maxZoom' => !!$this->googleUseSpiderfier ? $this->googleMaxZoom - 1 : $this->googleMaxZoom,
-                ]
+                'styles' => $clusterStyles,
+                'options' => [
+                    'maxZoom' => (bool) $this->googleUseSpiderfier ? $this->googleMaxZoom - 1 : $this->googleMaxZoom,
+                ],
             ],
             'marker' => [
                 'icon' => [
-                    'imagePath'    => $markerImagePath,
-                    'imageWidth'   => $markerSize[0],
-                    'imageHeight'  => $markerSize[1]
-                ]
+                    'imagePath' => $markerImagePath,
+                    'imageWidth' => $markerSize[0],
+                    'imageHeight' => $markerSize[1],
+                ],
             ],
             'map' => [
-                'style'          => $this->googleStyle,
-                'styles'         => GoogleMaps::getMapStyles(),
-                'lat'            => $this->googleInitialLat,
-                'lng'            => $this->googleInitialLng,
-                'zoom'           => $this->googleInitialZoom,
-                'minZoom'        => $this->googleMinZoom,
-                'maxZoom'        => $this->googleMaxZoom,
-                'gestureHandling'=> $this->googleGestureHandling,
-                'controls'       => !!$this->googleControls,
-                'mapTypeControl' => !!$this->googleMapTypeControl,
-                'fullscreen'     => !!$this->googleFullscreen,
-                'streetview'     => !!$this->googleStreetview,
-                'interactive'    => !!$this->googleInteractive,
-                'bounds'         => !!$this->googleUseBounce,
-            ]
+                'style' => $this->googleStyle,
+                'styles' => GoogleMaps::getMapStyles(),
+                'lat' => $this->googleInitialLat,
+                'lng' => $this->googleInitialLng,
+                'zoom' => $this->googleInitialZoom,
+                'minZoom' => $this->googleMinZoom,
+                'maxZoom' => $this->googleMaxZoom,
+                'gestureHandling' => $this->googleGestureHandling,
+                'controls' => (bool) $this->googleControls,
+                'mapTypeControl' => (bool) $this->googleMapTypeControl,
+                'fullscreen' => (bool) $this->googleFullscreen,
+                'streetview' => (bool) $this->googleStreetview,
+                'interactive' => (bool) $this->googleInteractive,
+                'bounds' => (bool) $this->googleUseBounce,
+            ],
         ];
 
         // HOOK: Modify parameters for module estates

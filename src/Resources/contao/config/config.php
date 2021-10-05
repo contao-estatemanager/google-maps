@@ -1,17 +1,23 @@
 <?php
-/**
+
+declare(strict_types=1);
+
+/*
  * This file is part of Contao EstateManager.
  *
- * @link      https://www.contao-estatemanager.com/
- * @source    https://github.com/contao-estatemanager/googlemaps
- * @copyright Copyright (c) 2019  Oveleon GbR (https://www.oveleon.de)
- * @license   https://www.contao-estatemanager.com/lizenzbedingungen.html
+ * @see        https://www.contao-estatemanager.com/
+ * @source     https://github.com/contao-estatemanager/google-maps
+ * @copyright  Copyright (c) 2021 Oveleon GbR (https://www.oveleon.de)
+ * @license    https://www.contao-estatemanager.com/lizenzbedingungen.html
  */
 
 // ESTATEMANAGER
-$GLOBALS['TL_ESTATEMANAGER_ADDONS'][] = array('ContaoEstateManager\GoogleMaps', 'AddonManager');
+$GLOBALS['TL_ESTATEMANAGER_ADDONS'][] = ['ContaoEstateManager\GoogleMaps', 'AddonManager'];
 
-if(ContaoEstateManager\GoogleMaps\AddonManager::valid()) {
+use ContaoEstateManager\GoogleMaps\AddonManager;
+
+if (AddonManager::valid())
+{
     // Models
     $GLOBALS['TL_MODELS']['tl_geo_postal_code'] = 'ContaoEstateManager\GoogleMaps\GeoPostalCodeModel';
 
