@@ -47,7 +47,7 @@ if (AddonManager::valid())
     $GLOBALS['TL_DCA']['tl_real_estate_config']['fields']['googleMapStylesScript'] = [
         'label' => &$GLOBALS['TL_LANG']['tl_real_estate_config']['googleMapStylesScript'],
         'inputType' => 'textarea',
-        'eval' => ['style' => 'height:120px', 'rte' => 'ace|js', 'tl_class' => 'clr'],
+        'eval' => ['useRawRequestData' => true, 'style' => 'height:120px', 'rte' => 'ace|js', 'tl_class' => 'clr'],
     ];
 
     $GLOBALS['TL_DCA']['tl_real_estate_config']['fields']['googleMapClusterStyles'] = [
@@ -60,7 +60,6 @@ if (AddonManager::valid())
             'columnFields' => [
                 'image' => [
                     'label' => &$GLOBALS['TL_LANG']['tl_real_estate_config']['clusterImage'],
-                    'exclude' => true,
                     'inputType' => 'fileTree',
                     'eval' => ['mandatory' => true, 'fieldType' => 'radio', 'filesOnly' => true, 'extensions' => Config::get('validImageTypes')],
                 ],
@@ -101,7 +100,7 @@ if (AddonManager::valid())
     $GLOBALS['TL_DCA']['tl_real_estate_config']['palettes']['__selector__'][] = 'googleMapUseClusterStyles';
     $GLOBALS['TL_DCA']['tl_real_estate_config']['palettes']['__selector__'][] = 'googleMapUseMapStyles';
 
-    // Add subplattes
+    // Add subpalettes
     $GLOBALS['TL_DCA']['tl_real_estate_config']['subpalettes']['googleMapUseClusterStyles'] = 'googleMapClusterStyles';
     $GLOBALS['TL_DCA']['tl_real_estate_config']['subpalettes']['googleMapUseMapStyles'] = 'googleMapStylesScript';
 
