@@ -47,7 +47,7 @@ if (AddonManager::valid())
     $GLOBALS['TL_DCA']['tl_real_estate_config']['fields']['googleMapStylesScript'] = [
         'label' => &$GLOBALS['TL_LANG']['tl_real_estate_config']['googleMapStylesScript'],
         'inputType' => 'textarea',
-        'eval' => ['useRawRequestData' => true, 'style' => 'height:120px', 'rte' => 'ace|js', 'tl_class' => 'clr'],
+        'eval' => ['decodeEntities'=>true, 'style' => 'height:120px', 'rte' => 'ace|js', 'tl_class' => 'clr'],
     ];
 
     $GLOBALS['TL_DCA']['tl_real_estate_config']['fields']['googleMapClusterStyles'] = [
