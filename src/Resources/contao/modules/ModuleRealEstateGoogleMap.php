@@ -15,7 +15,6 @@ namespace ContaoEstateManager\GoogleMaps;
 
 use Contao\BackendTemplate;
 use ContaoEstateManager\ModuleRealEstate;
-use Patchwork\Utf8;
 
 /**
  * Front end module "real estate google map".
@@ -41,7 +40,7 @@ class ModuleRealEstateGoogleMap extends ModuleRealEstate
         if (TL_MODE === 'BE')
         {
             $objTemplate = new BackendTemplate('be_wildcard');
-            $objTemplate->wildcard = '### '.Utf8::strtoupper($GLOBALS['TL_LANG']['FMD']['realEstateGoogleMap'][0]).' ###';
+            $objTemplate->wildcard = '### '. mb_strtoupper($GLOBALS['TL_LANG']['FMD']['realEstateGoogleMap'][0], 'UTF-8') . ' ###';
             $objTemplate->title = $this->headline;
             $objTemplate->id = $this->id;
             $objTemplate->link = $this->name;
