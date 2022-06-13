@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace ContaoEstateManager\GoogleMaps;
 
 use Contao\BackendTemplate;
+use Contao\Config;
 use ContaoEstateManager\ModuleRealEstate;
 
 /**
@@ -98,11 +99,13 @@ class ModuleRealEstateGoogleMap extends ModuleRealEstate
                 'path' => '/api/estatemanager/v1/estates',
                 'param' => [
                     'dataType' => 'geojson',
-                    'filter' => true,
+                    'format' => 'geojson',
+                    'session' => true,
                     'filterMode' => $this->filterMode,
                     'groups' => $this->realEstateGroups,
                     'pageId' => $objPage->id,
                     'moduleId' => $this->id,
+                    'key' => Config::get('cemApiKey')
                 ],
             ],
             'popup' => [
