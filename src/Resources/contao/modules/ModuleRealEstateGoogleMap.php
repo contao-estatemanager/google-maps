@@ -98,14 +98,12 @@ class ModuleRealEstateGoogleMap extends ModuleRealEstate
             'source' => [
                 'path' => '/api/estatemanager/v1/estates',
                 'param' => [
-                    'dataType' => 'geojson',
                     'format' => 'geojson',
                     'session' => true,
                     'filterMode' => $this->filterMode,
                     'groups' => $this->realEstateGroups,
                     'pageId' => $objPage->id,
-                    'moduleId' => $this->id,
-                    'key' => Config::get('cemApiKey')
+                    'moduleId' => $this->id
                 ],
             ],
             'popup' => [
