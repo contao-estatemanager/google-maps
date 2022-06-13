@@ -157,9 +157,9 @@ class ModuleRealEstateGoogleMap extends ModuleRealEstate
         ];
 
         // HOOK: Modify parameters for module estates
-        if (isset($GLOBALS['TL_HOOKS']['compileRealEstateGoogleMap']) && \is_array($GLOBALS['TL_HOOKS']['compileRealEstateGoogleMap']))
+        if (isset($GLOBALS['CEM_HOOKS']['compileRealEstateGoogleMap']) && \is_array($GLOBALS['CEM_HOOKS']['compileRealEstateGoogleMap']))
         {
-            foreach ($GLOBALS['TL_HOOKS']['compileRealEstateGoogleMap'] as $callback)
+            foreach ($GLOBALS['CEM_HOOKS']['compileRealEstateGoogleMap'] as $callback)
             {
                 $this->import($callback[0]);
                 $this->{$callback[0]}->{$callback[1]}($this->Template, $mapConfig, $this);
