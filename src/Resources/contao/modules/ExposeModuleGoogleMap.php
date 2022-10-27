@@ -32,7 +32,7 @@ class ExposeModuleGoogleMap extends ExposeModule
     protected $strTemplate = 'expose_mod_googlemap';
 
     /**
-     * Do not display the module if there are no real etates.
+     * Do not display the module if there are no real estates.
      *
      * @return string
      */
