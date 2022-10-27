@@ -24,7 +24,8 @@
   ],
   "require":{
     "php":"^7.4 || ^8.0",
-    "contao/core-bundle":"^4.4",
+    "ext-mbstring": "*",
+    "contao/core-bundle":"^4.9",
     "contao-estatemanager/core": "^1.0",
     "contao-estatemanager/google-services": "^1.0"
   },

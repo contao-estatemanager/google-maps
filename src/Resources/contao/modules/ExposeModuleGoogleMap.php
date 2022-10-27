@@ -16,7 +16,6 @@ namespace ContaoEstateManager\GoogleMaps;
 use Contao\BackendTemplate;
 use Contao\Config;
 use ContaoEstateManager\ExposeModule;
-use Patchwork\Utf8;
 
 /**
  * Expose module "google map".
@@ -33,7 +32,7 @@ class ExposeModuleGoogleMap extends ExposeModule
     protected $strTemplate = 'expose_mod_googlemap';
 
     /**
-     * Do not display the module if there are no real etates.
+     * Do not display the module if there are no real estates.
      *
      * @return string
      */
@@ -42,7 +41,7 @@ class ExposeModuleGoogleMap extends ExposeModule
         if (TL_MODE === 'BE')
         {
             $objTemplate = new BackendTemplate('be_wildcard');
-            $objTemplate->wildcard = '### '.Utf8::strtoupper($GLOBALS['TL_LANG']['FMD']['virtual_tour'][0]).' ###';
+            $objTemplate->wildcard = '### '. mb_strtoupper($GLOBALS['TL_LANG']['FMD']['virtual_tour'][0], 'UTF-8') . ' ###';
             $objTemplate->title = $this->headline;
             $objTemplate->id = $this->id;
             $objTemplate->link = $this->name;
