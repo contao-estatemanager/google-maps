@@ -25,7 +25,7 @@ if (AddonManager::valid())
     $GLOBALS['FE_MOD']['estatemanager']['realEstateGoogleMap'] = 'ContaoEstateManager\GoogleMaps\ModuleRealEstateGoogleMap';
 
     // Add expose module
-    $GLOBALS['CEM_FE_EXPOSE_MOD']['media']['googleMap'] = 'ContaoEstateManager\GoogleMaps\ExposeModuleGoogleMap';
+    $GLOBALS['FE_EXPOSE_MOD']['media']['googleMap'] = 'ContaoEstateManager\GoogleMaps\ExposeModuleGoogleMap';
 
     // Hooks
     //$GLOBALS['TL_HOOKS']['beforeRealEstateImport'][]   = array('ContaoEstateManager\\GoogleMaps\\PostalCode', 'determinePostalCodeGeoData');
