@@ -25,9 +25,9 @@
   "require":{
     "php":"^7.4 || ^8.0",
     "ext-mbstring": "*",
-    "contao/core-bundle":"^4.4",
-    "contao-estatemanager/core": "^1.0",
-    "contao-estatemanager/google-services": "^1.0"
+    "contao/core-bundle":"^4.9",
+    "contao-estatemanager/core": "^2.0",
+    "contao-estatemanager/google-services": "^2.0"
   },
   "require-dev": {
     "contao/manager-plugin": "^2.0",
@@ -53,7 +53,7 @@
   },
   "extra":{
     "branch-alias": {
-      "dev-main": "1.0.x-dev"
+      "dev-main": "2.0.x-dev"
     },
     "contao-manager-plugin": "ContaoEstateManager\\GoogleMaps\\ContaoManager\\Plugin"
   },
